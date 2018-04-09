@@ -11,12 +11,12 @@ namespace Cs
 	{
 		private static int Main(string[] args)
 		{
-			return Task.Run(async () => await Run(args[0])).GetAwaiter().GetResult();
+			return Task.Run(async () => await RunAsync(args[0])).GetAwaiter().GetResult();
 		}
 
-		private static async Task<int> Run(string path)
+		private static async Task<int> RunAsync(string path)
 		{
-			var code = await LoadCodeAndSanitize(path);
+			var code = await LoadAndSanitizeCodeAsync(path);
 
 			try
 			{
@@ -32,7 +32,7 @@ namespace Cs
 			}
 		}
 
-		private static async Task<string> LoadCodeAndSanitize(string path)
+		private static async Task<string> LoadAndSanitizeCodeAsync(string path)
 		{
 			var lines = await File.ReadAllLinesAsync(path);
 			var sanitizedLines = SanitizeLines(lines);
