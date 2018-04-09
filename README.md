@@ -38,6 +38,9 @@ Console.WriteLine($"{a} + {b} = {result}");
 // Access script arguments through the global Args string array
 var arg = Args[0];
 
+// Access environment variables through the global Env dictionary
+var env = Env["SOME_ENVIRONMENT_VARIABLE"];
+
 // Return an exit code (defaults to 0 if not specified)
 return 1;
 ```
