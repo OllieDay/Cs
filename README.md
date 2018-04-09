@@ -34,6 +34,9 @@ var result = Add(a, b);
 
 // Write to stdout
 Console.WriteLine($"{a} + {b} = {result}");
+
+// Return an exit code (defaults to 0 if not specified)
+return 1;
 ```
 
 ### Make the script executable

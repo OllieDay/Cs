@@ -20,9 +20,9 @@ namespace Cs
 
 			try
 			{
-				await CSharpScript.RunAsync(code);
+				var state = await CSharpScript.RunAsync(code);
 
-				return 0;
+				return GetExitCodeFromScriptState(state);
 			}
 			catch (CompilationErrorException e)
 			{
@@ -56,6 +56,27 @@ namespace Cs
 
 				yield return sanitizedLine;
 			}
+		}
+
+		private static int GetExitCodeFromScriptState(ScriptState<object> state)
+		{
+			const int success = 0;
+			const int error = 1;
+
+			// If the script doesn't return a value then treat this as a success
+			if (state.ReturnValue == null)
+			{
+				return success;
+			}
+
+			// If the script return value is an integer then it should be the exit code
+			if (state.ReturnValue is int result)
+			{
+				return result;
+			}
+
+			// Any non-integer status is treated as an error exit code
+			return error;
 		}
 	}
 }
