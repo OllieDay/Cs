@@ -35,6 +35,9 @@ var result = Add(a, b);
 // Write to stdout
 Console.WriteLine($"{a} + {b} = {result}");
 
+// Access script arguments through the global Args string array
+var arg = Args[0];
+
 // Return an exit code (defaults to 0 if not specified)
 return 1;
 ```

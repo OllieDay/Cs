@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
@@ -17,10 +18,12 @@ namespace Cs
 		private static async Task<int> RunAsync(string path)
 		{
 			var code = await LoadAndSanitizeCodeAsync(path);
+			var globals = new Globals();
+			var globalsType = globals.GetType();
 
 			try
 			{
-				var state = await CSharpScript.RunAsync(code);
+				var state = await CSharpScript.RunAsync(code, null, globals, globalsType);
 
 				return GetExitCodeFromScriptState(state);
 			}
