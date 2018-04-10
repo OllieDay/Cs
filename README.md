@@ -41,6 +41,12 @@ var arg = Args[0];
 // Access environment variables through the global Env dictionary
 var env = Env["SOME_ENVIRONMENT_VARIABLE"];
 
+// Execute commands and other scripts
+Exec("ls");
+Exec("some-other-script.cs", "some-arg", 42, DateTime.Now);
+
+var exitCode = await ExecAsync("some-other-script.cs");
+
 // Return an exit code (defaults to 0 if not specified)
 return 1;
 ```
