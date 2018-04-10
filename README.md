@@ -18,7 +18,14 @@ Create script files (e.g. `script.cs`); any file extension works.
 #!/usr/local/bin/cs
 // ^ Required by the program loader to find the interpreter
 
+// These imports are implicitly included in every script
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 // Top-level functions
 int Add(int x, int y)
